@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Tom&#39;s Code Garden">
+        <meta property="og:title" content="Shell笔记">
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Archives - Tom&#39;s Code Garden</title>
+    <title>Shell笔记 - Tom&#39;s Code Garden</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
@@ -72,8 +72,6 @@
 <body>
 
 <!-- Main Content -->
-
-
 <!-- Banner -->
 <!-- Banner -->
 <div class="w-100 bg-1 ph5-ns ph3 text-light">
@@ -110,128 +108,117 @@
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Archives</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns"></p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Shell笔记</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-01-11</p>
         </div>
     </div>
 
     <!-- Icon -->
     <div class="relative w-100 mw8 center white dn dn-m db-ns">
-        <i class="header-icon fa fa-folder-open"></i>
+        <i class="header-icon fa fa-file-text-o"></i>
     </div>
 </div>
 
+<!-- Content -->
 <div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
     <div class="content">
         <div class="mw8 center">
-            
-                <a href="/2019/01/10/Airbnb-JavaScript-Style-Guide/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/Linux-Shell/">#Linux, Shell</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <h1 id="Shell-命令"><a href="#Shell-命令" class="headerlink" title="Shell 命令"></a>Shell 命令</h1><h2 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h2><p>源代码： <code>kill -9 $(lsof -t -i:4000)</code></p>
+<p>lsof其实就是 list open files 的缩写，就是列出打开正在运行的文件，所以这个的输出有点像<code>ps</code>，会包含进程号PID。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># lsof /var</span><br><span class="line">COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME</span><br><span class="line">syslogd     350     root    5w  VREG  222,5        0 440818 /var/adm/messages</span><br><span class="line">syslogd     350     root    6w  VREG  222,5   339098   6248 /var/log/syslog</span><br><span class="line">cron        353     root  cwd   VDIR  222,5      512 254550 /var -- atjobs</span><br></pre></td></tr></table></figure></p>
+<p>从参数来看，<code>-i</code>是列出IP Sockets，<code>-n</code>就是不要解析DNS，<code>-P</code>则是不要解析端口号。<br>比如，源代码中的 <code>lsof -n -P -i:4000</code> 就会得到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">COMMAND   PID    USER   FD   TYPE            DEVICE SIZE/OFF NODE NAME</span><br><span class="line">node    42570 tomzhao   13u  IPv6 0x97a2cb3b6369411      0t0  TCP *:4000 (LISTEN)</span><br></pre></td></tr></table></figure></p>
+<p>然后就是<code>-t</code>，是用来取出PID的，所以这个源代码中的参数就应该是<code>42570</code>。</p>
+<p>参考链接：<a href="https://en.wikipedia.org/wiki/Lsof" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Lsof</a></p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Linux-Shell/">#Linux, Shell</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5">
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://avatars.github.ibm.com/u/142743?s=460" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="tomzhao001">
         </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Airbnb JavaScript Style Guide<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/10/Babel笔记/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            Seeking the way to be a geek.
         </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Babel笔记<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/09/ESLint笔记/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
-        </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">ESLint笔记<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/07/hello-world/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
-        </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Hello World<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/28/Nexus搭建本地NPM仓库/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
-        </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Nexus搭建本地NPM仓库<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/10/Ubuntu常用命令/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
-        </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Ubuntu常用命令<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/11/Shell笔记/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
-        </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Shell笔记<span>
-        </span></span></div>
-    </div>
-</a>
-            
-                <a href="/2019/01/10/Node笔记/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv3">
-        <div class="dtc v-mid w-20 black-50">
-            
-                <span class="f4 fw3 lh-copy">Jan 2019</span> 
-            
-        </div>
-        <div class="dtc v-mid w-80 black-70">
-            <span class="f4 fw3 lh-copy">Node笔记<span>
-        </span></span></div>
-    </div>
-</a>
-            
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5">
+                    
+                    <!-- Widget 2: Categories -->
+                    
+                        <div class="mt5 tc tl-l">
+    <h3>Categories</h3>
+    
+        <p>
+            <a href="/categories/Linux/">Linux</a>
+        </p>
+    
+</div>
+
+
+                        <hr class="dn-l mw4 black-50 mt5">
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/01/28/Nexus搭建本地NPM仓库/">Nexus搭建本地NPM仓库</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/11/Shell笔记/">Shell笔记</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/10/Airbnb-JavaScript-Style-Guide/">Airbnb JavaScript Style Guide</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/10/Node笔记/">Node笔记</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/10/Babel笔记/">Babel笔记</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!-- Footer -->
 <div class="bg-1 ph2 ph5-ns pv5">

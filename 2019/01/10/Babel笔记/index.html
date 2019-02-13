@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Hello World">
+        <meta property="og:title" content="Babel笔记">
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Hello World - Tom&#39;s Code Garden</title>
+    <title>Babel笔记 - Tom&#39;s Code Garden</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
@@ -108,8 +108,8 @@
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Hello World</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-01-07</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Babel笔记</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-01-10</p>
         </div>
     </div>
 
@@ -127,20 +127,31 @@
                 <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
                     <!-- Tags Vertical -->
                     
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/Babel-NodeJS/">#Babel, NodeJS</a>
+                            </div>
+                        </div>
+                    
 
                     <!-- Main Post Content -->
-                    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+                    <h1 id="Babel-概述"><a href="#Babel-概述" class="headerlink" title="Babel 概述"></a>Babel 概述</h1><p>一句话，Babel就是用来把代码降级成ES2015，来兼容各种环境和浏览器。<br>所以，Babel其实就是一个代码转换器（code converter）。<br>官网文档： <a href="https://babeljs.io/docs/en/" target="_blank" rel="noopener">https://babeljs.io/docs/en/</a></p>
+<p>怎么会了解到Babel的呢？其实就是因为这个错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; log4js &#125; from &apos;log4js&apos;;</span><br><span class="line">^^^^^^</span><br><span class="line"></span><br><span class="line">SyntaxError: Unexpected token import</span><br><span class="line">	...</span><br><span class="line">	...</span><br></pre></td></tr></table></figure></p>
+<p>因为在用ES6，而且主要是ES6的Airbnb的编码规范中明确写明推荐使用<code>import {} from xxx</code>而不是<code>require(&#39;xxx&#39;)</code>，但是用上了之后就遇到了这个错误。<br>    <em>Airbnb ES6编码规范： <a href="https://github.com/yuche/javascript/blob/master/README.md#table-of-contents" target="_blank" rel="noopener">https://github.com/yuche/javascript/blob/master/README.md#table-of-contents</a></em></p>
+<p>Node本身已经支持部分ES6语法，但是<code>import export</code>，以及<code>async await</code>(Node 8 已经支持)等一些语法，我们还是无法使用。</p>
+<p>Babel就可以解决这个问题。<br>既然<code>import</code>这个关键字在Node中不支持，那么怎么办呢？对，转换！<br>就和TypeScript一样，为了JS代码的规范和强类型，最后还是编译成JS输出执行。<br>Babel在这里扮演相同的角色，在一下高版本的ES支持的语法，或者是TypeScript的强类型语法，原生JS不支持的东西，Babel几乎都可以编译成普通的可以使用的JS文件。<br>十分强大！！</p>
+<h1 id="Babel-Presets"><a href="#Babel-Presets" class="headerlink" title="Babel Presets"></a>Babel Presets</h1><p>Babel能够转换各种JS代码，靠的就是各种插件plugin，每个JS版本的转换，都需要不同的插件，毕竟JS规则不同嘛。<br>详细参考： <a href="https://babeljs.io/docs/en/" target="_blank" rel="noopener">https://babeljs.io/docs/en/</a></p>
+<p>那么，每次加这么多plugin是不是很麻烦，就有了preset，顾名思义就是事先定好的类似模板的东西，装好preset，就自动有各种plugin了，就可以转换啦！</p>
+<p>常见的有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@babel/preset-env</span><br><span class="line">@babel/preset-flow</span><br><span class="line">@babel/preset-react</span><br><span class="line">@babel/preset-typescript</span><br></pre></td></tr></table></figure></p>
+<p>具体用法可参见： <a href="https://babeljs.io/docs/en/presets" target="_blank" rel="noopener">https://babeljs.io/docs/en/presets</a></p>
+<p>不过大都只需要<code>npm install --save-dev</code>就行啦，然后配置一下<code>.babelrc</code>什么的。</p>
+<h1 id="Babel-ESLint"><a href="#Babel-ESLint" class="headerlink" title="Babel ESLint"></a>Babel ESLint</h1>
                     
                     <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Babel-NodeJS/">#Babel, NodeJS</a>
+                        </div>
                     
 
                     <!-- Comments -->
@@ -168,6 +179,18 @@
                     <hr class="dn-l mw4 black-50 mt5">
                     
                     <!-- Widget 2: Categories -->
+                    
+                        <div class="mt5 tc tl-l">
+    <h3>Categories</h3>
+    
+        <p>
+            <a href="/categories/NodeJS/">NodeJS</a>
+        </p>
+    
+</div>
+
+
+                        <hr class="dn-l mw4 black-50 mt5">
                     
 
                     <!-- Widget 3: Recent Posts -->
