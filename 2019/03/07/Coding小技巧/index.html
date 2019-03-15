@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Nexus搭建本地NPM仓库">
+        <meta property="og:title" content="Coding小技巧">
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Nexus搭建本地NPM仓库 - Tom&#39;s Code Garden</title>
+    <title>Coding小技巧 - Tom&#39;s Code Garden</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
@@ -104,8 +104,8 @@
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Nexus搭建本地NPM仓库</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-01-28</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Coding小技巧</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-03-07</p>
         </div>
     </div>
 
@@ -125,41 +125,33 @@
                     
                         <div class="tags-container-vertical">
                             <div class="tags-sub-container">
-                                <a class="fw3 ph1 dib" href="/tags/Platform-Nexus/">#Platform, Nexus</a>
+                                <a class="fw3 ph1 dib" href="/tags/General/">#General</a>
                             </div>
                         </div>
                     
 
                     <!-- Main Post Content -->
-                    <p>在nodejs的开发中，难免会想要去开发一点可重用的包，来方便别人和自己。在NPM官网上有非常详细的关于如何把包上传至NPM仓库的。不过毕竟有些有缺陷或者未完成的包，不好意思上传到公网，或者是公司内部项目要放到公司的私有仓库中。</p>
-<p>所以，这里，我们主要关注如何在本地搭建Nexus的NPM仓库。</p>
-<p>第一步肯定是上Nexus的Github，看readme文档：<a href="https://github.com/sonatype/docker-nexus3" target="_blank" rel="noopener">https://github.com/sonatype/docker-nexus3</a></p>
-<p>非常简单，一句话<code>$ docker run -d -p 8081:8081 --name nexus sonatype/nexus3</code></p>
-<p>这就是docker的魅力所在啊！</p>
-<p>等一会儿，直接访问<a href="http://localhost:8081，就有啦。" target="_blank" rel="noopener">http://localhost:8081，就有啦。</a></p>
-<p>第二步就是创建仓库啦。用<code>admin</code> - <code>admin123</code>登陆，点击管理 —&gt; Repositories —&gt; Create repository</p>
-<p>有三种npm仓库类型，proxy、host和group</p>
-<p>首先proxy就是字面意思，可以设置一个代理仓库，我们的私有仓库肯定也是要链接公网npm的，不然都不能下载新的包。所以一般proxy会设置成 <a href="https://registory.npmjs.org" target="_blank" rel="noopener">https://registory.npmjs.org</a></p>
-<p>这个host才是真正本地的私有仓库，proxy下载下来的，以及你自己上传的，都是放到这里。</p>
-<p>我们可以看到远端proxy和本地host是两个仓库，频繁切换会很不方便，这就有了group！顾名思义，就是把proxy和host结合起来。这样就可以放心地把npm config里面的registry改成npm-group了！</p>
-<p>创建好这三个之后，就设置新的registry吧！</p>
-<p><code>npm config set registry http://localhost:8081/repository/npm-group/</code></p>
-<p>这个url可以在你新建的仓库的属性中查看。</p>
-<p>到此，这个npm的仓库已经可以用了，但是我们还不能把自己的包放到上面去，我们还有两步！</p>
-<p>首先，开启Realms，点击管理 —&gt; Realms —&gt; npm Bearer Token Realm 把这个放到右边Active去，就好了。</p>
-<p>这样还不行，因为这样你<code>npm publish</code>的时候，其实是提交到npm-group上，这样是会报错的。</p>
-<p>最后一步，在项目中的package.json文件中，添加这个属性：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"publishConfig": &#123;</span><br><span class="line">    "registry": "http://localhost:8081/repository/npm-host/"</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-<p>指定传到host上面去，就好啦！</p>
-<p>参考链接：</p>
-<p><a href="https://exchange.sonatype.com/details?extension=4789672387" target="_blank" rel="noopener">https://exchange.sonatype.com/details?extension=4789672387</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/35907412" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35907412</a></p>
+                    <p>在看别人的代码的时候，特别是各种源码，会发现一下让人醍醐灌顶的写法，为了防止看了就忘，看到的时候就记下来吧，嗯！</p>
+<ol>
+<li><p>怎么表示一个数number是2的次方，比如8，16，64等</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> number = xxxxxx</span><br><span class="line"><span class="keyword">int</span> t = number - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (number &amp; t == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// This number is a power of 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在JS里面，有一种判断方式可以不用<code>if</code>，而使用<code>&amp;&amp;</code>，下面是一个promise的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">        i === <span class="number">99</span> &amp;&amp; resolve();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>通过这种短路原则，可以实现类似<code>if</code>的功能。</p>
+<p>类似的，<code>||</code>这个或的符号也可以用作默认的赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> keepAliveDelay = sockopts.keepAliveDelay || <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>当然也不能忘了否这个符号<code>!</code>。看到一种用法是表示一个变量是boolean类型。</p>
+<p>因为JS是非常弱类型的语言，没到runtime的时候，每个变量的类型都不知道，就给查代码和调试造成一点麻烦，但是<code>!!</code>这个符号可以表示boolean类型，可以说是很贴心了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> keepAlive = !!sockopts.keepAlive;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
                     
                     <!-- Tags Bottom -->
                     
                         <div class="tags-container-bottom">
-                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Platform-Nexus/">#Platform, Nexus</a>
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/General/">#General</a>
                         </div>
                     
 
@@ -193,7 +185,7 @@
     <h3>Categories</h3>
     
         <p>
-            <a href="/categories/NodeJS/">NodeJS</a>
+            <a href="/categories/General/">General</a>
         </p>
     
 </div>
